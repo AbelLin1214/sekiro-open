@@ -6,7 +6,7 @@ COPY . .
 
 # 直接执行 Maven 构建命令
 RUN mvn -Dmaven.test.skip=true package appassembler:assemble && \
-    chmod +x target/sekiro-server/bin/sekiro.sh
+    chmod +x target/sekiro-open-demo/bin/sekiro.sh
 
 # 运行阶段
 FROM openjdk:8-jre-slim
@@ -14,7 +14,7 @@ FROM openjdk:8-jre-slim
 WORKDIR /app
 
 # 直接复制构建产物
-COPY --from=builder /build/target/sekiro-server/appassembler/ /app/
+COPY --from=builder /build/target/sekiro-open-demo /app/
 
 # 设置环境变量
 ENV PORT=5612
